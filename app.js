@@ -12,6 +12,9 @@ mongoose.connect('mongodb://localhost:27017/vidjot', { useNewUrlParser: true, us
     .then(() => console.log('MongoDB connected...'))
     .catch(err => console.log(err))
 
+//Load Idea Model
+require('./models/Idea'); 
+const Idea = mongoose.model('ideas');
 
 // Handlebars Middleware
 app.engine('handlebars', exphbs());
@@ -28,6 +31,13 @@ app.get('/', (req, res) => {
 // About Route 
 app.get('/about', (req, res) => {
     res.render('about')
+})
+
+app.get('/ideas', (req, res) => {
+    res.render('ideas/ideas')
+})
+app.get('/ideas/add', (req, res) => {
+    res.render('ideas/add')
 })
 
 const port = 5000; 
